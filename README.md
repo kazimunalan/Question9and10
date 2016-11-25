@@ -27,7 +27,7 @@ Uygulama Gereksinimleri ve POM Dosyası
 
 Spring Boot ile yazacağımız uygulamamız, Her sınıf MVC yapısı baz alınarak  model, dao, service ve controller siniflari hazirlanmiştir.  İlk olarak Employee kaydı alınmış daha sonra Department kaydına geçince kayıt atan kişi hem department ın ismi ve açıklamasını doldurduktan sonra Employee id sine göre gelen employee instance larından istediğini Department'a kayıt edilmiştir. Sonradan Department listelemesi yapılınca bu kısımda görülmüştür. Aynı şekilde Meetings bölümüde bu şekilde gerçekleştirilmiştir.
 
-Proje de MySQL workbench de veritabanı hazırlanmıştır. Hazırlanan veritabanının ismi userdb dir. İstenildiği taktirde resources/application.properties dosyasından veritabanı ismi değiştirilebilir. Bu dosyada mysql ve hibernate konfigürasyonları bulunmaktadır.
+Proje de MySQL workbench de veritabanı hazırlanmıştır. Hazırlanan veritabanının ismi cruddb dir. İstenildiği taktirde resources/application.properties dosyasından veritabanı ismi değiştirilebilir. Bu dosyada jsp, mysql ve hibernate konfigürasyonları bulunmaktadır.
 
 Hibernate konfigürasyonu kullanılarak veritabanında tablonun oluşması kolaylaştırılmıştır. Aynı zamanda tablo içinde Column ların içi sql kodlarının karşmaşıklığından kurtulup Hibernate orm mantığıyla rahatlıkla doldurulmuştur.
 

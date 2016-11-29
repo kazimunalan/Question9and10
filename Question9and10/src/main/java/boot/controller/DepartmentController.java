@@ -24,7 +24,9 @@ public class DepartmentController {
 	private DepartmentService departmentService;
 	@Autowired
 	private EmployeeService employeeService;
-
+	
+	@OneToMany(mappedBy = "meetings")
+	private List<Meetings> meetings;
 
 	
 	@GetMapping("/all-department")

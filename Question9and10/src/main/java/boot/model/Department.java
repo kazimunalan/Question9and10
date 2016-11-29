@@ -25,8 +25,11 @@ public class Department implements Serializable{
 	private String department_name;
 	private String department_description;
 	
-	@ManyToOne
+	@ManyToOne//employe ile iliskilendirme
 	private Employee employee;
+	
+	@OneToMany(mappedBy = "department") //meetings ile iliskilendirme
+	private List<Meetings> meetings;
 	
 	public Department(){}
 	

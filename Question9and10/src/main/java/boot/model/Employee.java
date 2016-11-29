@@ -14,11 +14,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity(name="t_employee")
+//entity anotasyonu veritabaninda tablo olusturulmasini saglar
+@Entity(name="t_employee")//veritabaninda olusacak tablonun ismi "t_employee" 'dir
 public class Employee implements Serializable{
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Id// tablodaki employee instance i icin id saglanmistir
+	@GeneratedValue(strategy=GenerationType.AUTO)//id otamatik olarak bir bir artirilir.
 	private int id;
 	private String employee_name;
 	private String employee_surname;

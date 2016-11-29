@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import boot.model.Department;
+import boot.model.Employee;
 import boot.model.Meetings;
-
+import boot.service.DepartmentService;
 import boot.service.MeetingsService;
 
 @Controller
@@ -21,6 +23,9 @@ public class MeetingsController {
 	
 	@Autowired
 	private MeetingsService meetingsService;
+	
+	@Autowired
+	private DepartmentService departmentService;
 	
 
 
@@ -42,13 +47,16 @@ public class MeetingsController {
 	
 	@GetMapping("/new-meetings")
 	public String newTask(HttpServletRequest request){
+		request.setAttribute("department", departmentService.findAll());
 		request.setAttribute("mode", "MODE_NEW_MEETINGS");
 		return "index";
 	}
 	
 	@PostMapping("/save-meetings")
-	public String saveTask(@ModelAttribute Meetings task, BindingResult bindingResult, HttpServletRequest request){
+	public String saveTask(@ModelAttribute Meetings task, @ModelAttribute Department department, BindingResult bindingResult, HttpServletRequest request){
 		//task.setDateCreated(new Date());
+		Department dpr = departmentService.findTask(department.getId());
+		task.setDepartment(dpr);
 		meetingsService.save(task);
 		request.setAttribute("tasks", meetingsService.findAll());
 		request.setAttribute("mode", "MODE_MEETINGS");

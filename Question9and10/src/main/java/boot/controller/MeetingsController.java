@@ -14,62 +14,60 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import boot.model.Department;
 import boot.model.Employee;
-import boot.model.Meetings;
 import boot.service.DepartmentService;
-import boot.service.MeetingsService;
+import boot.service.EmployeeService;
 
 @Controller
-public class MeetingsController {
-	
-	@Autowired
-	private MeetingsService meetingsService;
+public class DepartmentController {
 	
 	@Autowired
 	private DepartmentService departmentService;
+	@Autowired
+	private EmployeeService employeeService;
+
+
 	
-
-
-
-	
-	@GetMapping("/all-meetings")
+	@GetMapping("/all-department")
 	public String allTasks(HttpServletRequest request){
-		request.setAttribute("tasks", meetingsService.findAll());
-		request.setAttribute("mode", "MODE_MEETINGS");
+		request.setAttribute("tasks", departmentService.findAll());
+		request.setAttribute("mode", "MODE_DEPARTMENT");
+		
 		return "index";
 	}
 	
-	@GetMapping("/update-meetings")
+	@GetMapping("/update-department")
 	public String updateTask(@RequestParam int id, HttpServletRequest request){
-		request.setAttribute("task", meetingsService.findTask(id));
-		request.setAttribute("mode", "MODE_UPDATE_MEETINGS");
+		request.setAttribute("task", departmentService.findTask(id));
+		request.setAttribute("mode", "MODE_UPDATE_DEPARTMENT");
 		return "index";
 	}
 	
-	@GetMapping("/new-meetings")
+	@GetMapping("/new-department")
 	public String newTask(HttpServletRequest request){
-		request.setAttribute("department", departmentService.findAll());
-		request.setAttribute("mode", "MODE_NEW_MEETINGS");
+		request.setAttribute("employee", employeeService.findAll());
+		request.setAttribute("mode", "MODE_NEW_DEPARTMENT");
 		return "index";
 	}
 	
-	@PostMapping("/save-meetings")
-	public String saveTask(@ModelAttribute Meetings task, @ModelAttribute Department department, BindingResult bindingResult, HttpServletRequest request){
+	@PostMapping("/save-department")
+	public String saveTask(@ModelAttribute Department task, @ModelAttribute Employee employee, BindingResult bindingResult, HttpServletRequest request){
 		//task.setDateCreated(new Date());
-		Department dpr = departmentService.findTask(department.getId());
-		task.setDepartment(dpr);
-		meetingsService.save(task);
-		request.setAttribute("tasks", meetingsService.findAll());
-		request.setAttribute("mode", "MODE_MEETINGS");
+		Employee emp = employeeService.findTask(employee.getId());
+		task.setEmployee(emp);
+		departmentService.save(task);
+		
+		request.setAttribute("tasks", departmentService.findAll());
+		request.setAttribute("mode", "MODE_DEPARTMENT");
 		return "index";
 	}
 
 	
 	
-	@GetMapping("/delete-meetings")
+	@GetMapping("/delete-department")
 	public String deleteTask(@RequestParam int id, HttpServletRequest request){
-		meetingsService.delete(id);
-		request.setAttribute("tasks", meetingsService.findAll());
-		request.setAttribute("mode", "MODE_MEETINGS");
+		departmentService.delete(id);
+		request.setAttribute("tasks", departmentService.findAll());
+		request.setAttribute("mode", "MODE_DEPARTMENT");
 		return "index";
 	}
 }

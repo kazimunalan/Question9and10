@@ -24,7 +24,7 @@ public class Employee implements Serializable{
 	private String employee_surname;
 	private int employee_salary;
 	
-	@OneToMany(mappedBy = "employee")
+	@OneToMany(mappedBy = "employee")//department ile iliskilendirme
 	private List<Department> department;
 
 	

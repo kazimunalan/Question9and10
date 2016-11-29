@@ -2,11 +2,14 @@ package boot.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -19,17 +22,25 @@ public class Meetings implements Serializable{
 	private String meetings_name;
 	private String meetings_description;
 	
-
+	@ManyToOne//department ile iliskilendirme
+	private Department department;
 	
 	public Meetings(){}
 	
 
-	public Meetings(int id, String meetings_name, String meetings_description) {
+	
+
+
+	public Meetings(int id, String meetings_name, String meetings_description, Department department) {
 		super();
 		this.id = id;
 		this.meetings_name = meetings_name;
 		this.meetings_description = meetings_description;
+		this.department = department;
 	}
+
+
+
 
 
 	public int getId() {
@@ -37,9 +48,15 @@ public class Meetings implements Serializable{
 	}
 
 
+
+
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
+
+
 
 
 	public String getMeetings_name() {
@@ -47,9 +64,15 @@ public class Meetings implements Serializable{
 	}
 
 
+
+
+
 	public void setMeetings_name(String meetings_name) {
 		this.meetings_name = meetings_name;
 	}
+
+
+
 
 
 	public String getMeetings_description() {
@@ -57,14 +80,36 @@ public class Meetings implements Serializable{
 	}
 
 
+
+
+
 	public void setMeetings_description(String meetings_description) {
 		this.meetings_description = meetings_description;
 	}
 
 
+
+
+
+	public Department getDepartment() {
+		return department;
+	}
+
+
+
+
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+
+
+
+
 	@Override
 	public String toString() {
-		return "Task [id=" + id + ", meetings_name=" + meetings_name + ", meetings_description=" + meetings_description
+		return "Task [id=" + id + ", meetings_name=" + meetings_name + ", meetings_description=" + meetings_description + "department=" + department
 				+  "]";
 	}
 

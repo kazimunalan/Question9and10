@@ -2,12 +2,14 @@ package boot.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,24 +25,25 @@ public class Department implements Serializable{
 	private String department_name;
 	private String department_description;
 	
-//	@OneToMany(cascade = CascadeType.ALL)
-//	private Employee employee;
+	@ManyToOne
+	private Employee employee;
 	
 	public Department(){}
 	
 
-
-	public Department(int id, String department_name, String department_description) {
+	public Department(int id, String department_name, String department_description, Employee employee) {
 		super();
 		this.id = id;
 		this.department_name = department_name;
 		this.department_description = department_description;
+		this.employee = employee;
 	}
-
+	
 
 	public int getId() {
 		return id;
 	}
+
 
 	public void setId(int id) {
 		this.id = id;
@@ -57,11 +60,9 @@ public class Department implements Serializable{
 	}
 
 
-
 	public String getDepartment_description() {
 		return department_description;
 	}
-
 
 
 	public void setDepartment_description(String department_description) {
@@ -69,10 +70,19 @@ public class Department implements Serializable{
 	}
 
 
+	public Employee getEmployee() {
+		return employee;
+	}
+
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
 
 	@Override
 	public String toString() {
-		return "Task [id=" + id + ", department_name=" + department_name + ", department_description=" + department_description
+		return "Task [id=" + id + ", department_name=" + department_name + ", department_description=" + department_description + ", employee=" + employee
 				+  "]";
 	}
 

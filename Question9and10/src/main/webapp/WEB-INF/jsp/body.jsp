@@ -81,6 +81,7 @@
  		<div class="container text-center invisible-at-first" id="taskDiv">
  	<h3>Department Listing</h3>
 				<hr>
+			
 	  	<div class="table-responsive">
 	  		<table class="table table-striped table-bordered text-left">
 	  			<thead>
@@ -88,16 +89,16 @@
 	  				 	<!-- <th>Id</th> -->
 	  				 	<th>Name</th>
 	  				 	<th>Description</th>
-	  				 	
+	  				 	<th>EmloyeeID</th>
 	  				</tr>
 	  			</thead>
 	  			<tbody>
-	  				<c:forEach var="task" items="${tasks}">
+	  				<c:forEach var="task" items="${tasks}" >
 	  					<tr>
 	  						<!--<td>${task.id}</td> -->
 	  						<td>${task.department_name}</td>
 	  						<td>${task.department_description}</td>
-	  					
+	  						<td>${task.employee_id}</td>
 	  						<td><a href="update-department?id=${task.id}"><span class="glyphicon glyphicon-pencil"></span></a></td>
 	  						<td><a href="delete-department?id=${task.id}"><span class="glyphicon glyphicon-trash"></span></a></td>
 	  						
@@ -127,7 +128,18 @@
 							<input type="text" class="form-control" name="department_description" value="${task.department_description}"/>
 						</div>				
 					</div>
+					<div class="form-group">
+											<div class="col-md-7">
 					
+						<label class="control-label col-md-3">Description</label>
+ 							<select name="id" class="form-control">
+							<c:forEach var="emp" items="${employee}" >
+							<option value=${emp.id}>${emp.employee_name} ${emp.employee_surname}</option>
+							</c:forEach>
+							</select>
+							</div>
+		
+					</div>
 					
 					
 					<div class="form-group">
